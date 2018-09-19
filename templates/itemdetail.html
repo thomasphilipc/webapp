@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "nav.html" %}
+{% include "flash.html" %}
+
+<!-- Page Content -->
+<section id="itemDetail" class="section">
+
+    <div class="container">
+
+        <div class="row">
+
+            {% include "categories.html" %}
+
+            <div class="col-md-9 padding-top-49">
+
+                <div class="thumbnail">
+                    <div class="caption-full">
+                        <h6 class="pull-right padding-left-10">
+                            <a href = "{{url_for('deleteItem', item_name = item.name)}}" class="btn btn-danger" role="button">Delete</a>
+                        </h6>
+                        <h6 class="pull-right">
+                            <a href = "{{url_for('editItem',category_name = item.category.name, item_name = item.name)}}"class="btn btn-primary" role="button">Edit</a>
+                        </h6>
+                        <h4>{{ item.name }}</h4>
+                        <img class="img-responsive img-center thumbnail" src="{{ url_for('static', filename='img/NoImage.png') }}" alt="{{ item.name }}">
+                        <p>{{ item.description }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.section -->
+
+{% endblock %}

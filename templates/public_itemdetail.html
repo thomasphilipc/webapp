@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.name }}{% endblock title %}
+
+{% block content %}
+{% include "nav.html" %}
+{% include "flash.html" %}
+
+<!-- Page Content -->
+<section id="itemDetail" class="section">
+
+    <div class="container">
+
+        <div class="row">
+
+            {% include "categories.html" %}
+
+
+            <div class="col-md-9 padding-top-49">
+
+                <div class="thumbnail">
+                    {% if item.picture %}
+                            <img class="img-responsive img-center" src="{{ item.picture }}" alt="{{ item.name }}">
+                        {% else %}
+                            <img class="img-responsive img-center" src="{{ url_for('static', filename='img/NoImage.png') }}" alt="{{ item.name }}">
+                        {% endif %}
+                    <div class="caption-full">
+                        <h3>{{ item.name }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /.row -->
+
+
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.section -->
+
+{% endblock %}

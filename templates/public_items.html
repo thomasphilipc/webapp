@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Category Items{% endblock title %}
+
+{% block content %}
+{% include "nav.html" %}
+{% include "flash.html" %}
+
+<!-- Page Content -->
+<section id="showItem" class="section">
+
+    <div class="container">
+
+        <div class="row">
+
+            {% include "categories.html" %}
+
+            <div class="col-md-9">
+                <h6 class="padding-bottom-26">Total Listed Items (<strong>{{count}}</strong>)</h6>
+                {% for i in items %}
+                <div class="thumbnail text-center">
+                    <div class="caption-full">
+                        {% if i.picture %}
+                            <img class="img-responsive img-center thumbnail" src="{{ i.picture }}" alt="{{ i.name }}">
+                        {% else %}
+                            <img class="img-responsive img-center thumbnail" src="{{ url_for('static', filename='img/NoImage.png') }}">
+                        {% endif %}
+                    </div>
+                    <a href = "{{url_for('showItem', category_name = i.category.name, item_name = i.name)}}">
+                        <h4>{{ i.name }}</h4>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.section -->
+
+{% endblock %}

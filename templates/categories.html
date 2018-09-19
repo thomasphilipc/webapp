@@ -1,0 +1,18 @@
+<!--showCategories-->
+<section id="showCategories">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <h1 class="panel-title">Categories</h1>
+            </div>
+            <div class="panel-body">
+        <div class="list-group">
+            {% for c in categories %}
+            <a href="{{url_for('showCategory', category_name = c.name,)}}" class="list-group-item">{{ c.name }}<span class="badge">5</span></a>
+            {% endfor %}
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/showCategories-->

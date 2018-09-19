@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Catalog{% endblock title %}
+
+{% block content %}
+{% include "nav.html" %}
+{% include "flash.html" %}
+
+<!-- Page Content -->
+<section id="catalog" class="section">
+
+    <div class="container">
+
+        <div class="row">
+
+            {% include "categories.html" %}
+            
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                <div class="panel-heading">Latest Items</div>
+                 <div class="panel-body">Below are the recently added or modified items</div>
+                </div>
+                {% for i in items %}
+                <div class="thumbnail">-
+                    <div class="caption-full">
+                        {% if i.picture %}
+                        <img class="img-responsive img-center" src="{{ i.picture }}" alt="{{ i.name }}">
+                        {% else %}
+                            <img class="img-responsive img-center thumbnail" src="{{ url_for('static', filename='img/NoImage.png') }}">
+                        {% endif %}
+
+                    </div>
+                    <div class="center-block ">
+                    <a href = "{{url_for('showItem', category_name = i.category.name, item_name = i.name)}}">
+                        <span class="text-uppercase center-block">{{ i.name }}</span> </a>  <span class="label label-default ">{{ i.category.name }}   <i class="glyphicon glyphicon-tag"></i></span>
+
+                        <span class="pull-right"><span class="label label-default">Last update: {{ i.date|datetime}}</span></span>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.section -->
+{% endblock %}
